@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Case.cs" />
+    <Compile Include="CaseAutre.cs" />
+    <Compile Include="CaseChance.cs" />
+    <Compile Include="CaseAchat.cs" />
+    <Compile Include="Joueur.cs" />
+    <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
