@@ -51,7 +51,7 @@ namespace Projet_design_pattern
                     if (i == 0)//start case
 
                     {
-                         CaseChance chance = new CaseChance(i, "red", 200, true); //gagne 200 si on tombe dessus
+                         CaseChance chance = new CaseChance(i, "red", 200, true); //earn  200 if a player is on it
                          plateau.Add(chance);
                     }
 
@@ -59,7 +59,8 @@ namespace Projet_design_pattern
 
                     {
 
-                         CaseAchat achat = new CaseAchat(i, "blue", 450);
+                         CaseAchat achat = new CaseAchat(i, "blue", 450,false,null);
+                        
                          plateau.Add(achat);
 
                     }
@@ -78,7 +79,7 @@ namespace Projet_design_pattern
 
                     {
 
-                         CaseAchat achat = new CaseAchat(i, "green", 600);
+                         CaseAchat achat = new CaseAchat(i, "green", 600,false,null);
                          plateau.Add(achat);
 
                      }
@@ -87,7 +88,7 @@ namespace Projet_design_pattern
 
                     {
 
-                        CaseChance chance = new CaseChance(i, "red", 150, false); //perd 150  si on tombe dessus
+                        CaseChance chance = new CaseChance(i, "red", 150, false); //loose 150  if a playrt is on it
                         plateau.Add(chance);
 
                     }
@@ -96,7 +97,7 @@ namespace Projet_design_pattern
 
                     {
 
-                        CaseAchat achat = new CaseAchat(i, "yellow", 750);
+                        CaseAchat achat = new CaseAchat(i, "yellow", 750,false,null);
                         plateau.Add(achat);
                     }
 
@@ -112,7 +113,7 @@ namespace Projet_design_pattern
 
                     {
 
-                        CaseAchat achat = new CaseAchat(i, "orange", 750);
+                        CaseAchat achat = new CaseAchat(i, "orange", 750,false,null);
                         plateau.Add(achat);
 
                      }

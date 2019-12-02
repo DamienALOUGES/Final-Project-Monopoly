@@ -6,21 +6,35 @@ using System.Threading.Tasks;
 
 namespace Projet_design_pattern
 {
-    class CaseAchat : Case
+    //'ConcreteElement' class of the visitor design pattern
+    class CaseAchat : Case,Icase
     {
-
+        private bool statut; // true si acheté , false sinon
         private int prix; // le prix de la case
+        private Joueur owner; // celui a qui appartient la case
 
+        public bool Statut
+        {
+            get { return statut; }
+            set { statut = value; }
+        }
         public int Prix
         {
             get { return prix; }
             set { prix = value; }
         }
+        public Joueur Owner
+        {
+            get { return owner; }
+            set { owner = value; }
+        }
+       
 
-   
-        public CaseAchat(int num, string col, int p) : base(num, col)
+        public CaseAchat(int num, string col, int p,bool stat,Joueur j) : base(num, col)
         {
             prix =  p;
+            statut = stat;
+            owner = j;
            
         }
 
@@ -31,13 +45,7 @@ namespace Projet_design_pattern
             return taxe;
         }
 
-        public Joueur owner(Joueur owner) // le joueur a qui a acheté la case
-        {
-            return owner;
-        }
-
-
-
+     
 
     }
 }

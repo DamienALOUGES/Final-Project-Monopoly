@@ -47,10 +47,13 @@
     <Compile Include="CaseAutre.cs" />
     <Compile Include="CaseChance.cs" />
     <Compile Include="CaseAchat.cs" />
+    <Compile Include="Cases.cs" />
+    <Compile Include="Icase.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IvisitorCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

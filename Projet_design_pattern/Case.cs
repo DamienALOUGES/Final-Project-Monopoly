@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace Projet_design_pattern
 {
-    abstract class Case
+    //This are classe which implement the Element interface ('Icase') and holds the real information.
+    //the 'ConcreTElements' inherit of this classe 
+
+    abstract class Case : Icase
     {
        protected int numero;
        protected string couleur;
+      
 
         public int Numero
         {
@@ -37,6 +41,11 @@ namespace Projet_design_pattern
             couleur + "\n";
         }
 
+        //pattern visitor
+        public void Accept(IvisitorCase visitor)
+        {
+            visitor.Visit(this);
+        }
 
 
     }
