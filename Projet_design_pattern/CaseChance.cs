@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projet_design_pattern
 {
     //'ConcreteElement' class of the visitor design pattern
-    class CaseChance : Case , Icase
+    class CaseChance : Case 
     {
         private int montant; //la case chance permet de gagner ou perdre de l'argent d'un certaint montant
         private bool malusBonus; // bonus = true ; malus=false
@@ -32,8 +32,12 @@ namespace Projet_design_pattern
             malusBonus = moub;
 
         }
+        public override void Accept(IvisitorCase visitor)
+        {
+            visitor.Visit(this);
+        }
 
-       
+
     }
 }
 

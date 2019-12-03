@@ -11,6 +11,9 @@ namespace Projet_design_pattern
 
     interface IvisitorCase //visitor=joueur
     {
-         void Visit(Case caseToVisite);
+        void Visit(CaseChance chance);
+        void Visit(CaseAutre autre);
+        void Visit(CaseAchat achat);
+        
     }
 }

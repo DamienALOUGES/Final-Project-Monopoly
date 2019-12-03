@@ -48,12 +48,13 @@
     <Compile Include="CaseChance.cs" />
     <Compile Include="CaseAchat.cs" />
     <Compile Include="Cases.cs" />
-    <Compile Include="Icase.cs" />
+    <Compile Include="Dés.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IvisitorCase.cs" />
+    <Compile Include="TourDeJeu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

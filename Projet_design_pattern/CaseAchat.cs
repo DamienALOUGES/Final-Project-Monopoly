@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projet_design_pattern
 {
     //'ConcreteElement' class of the visitor design pattern
-    class CaseAchat : Case,Icase
+    class CaseAchat : Case
     {
         private bool statut; // true si acheté , false sinon
         private int prix; // le prix de la case
@@ -45,7 +45,12 @@ namespace Projet_design_pattern
             return taxe;
         }
 
-     
+        public override void Accept(IvisitorCase visitor)
+        {
+            visitor.Visit(this);
+        }
+
+
 
     }
 }

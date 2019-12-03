@@ -8,7 +8,7 @@ namespace Projet_design_pattern
 {
 
     //'ConcreteElement' class of the visitor design pattern
-    class CaseAutre : Case, Icase // case 10 ou 30 : jail /visit jail
+    class CaseAutre : Case // case 10 ou 30 : jail /visit jail
     {
 
         public CaseAutre(int num, string col) : base(num, col) {}
@@ -25,6 +25,10 @@ namespace Projet_design_pattern
 
             }
        
+        }
+        public override void Accept(IvisitorCase visitor)
+        {
+            visitor.Visit(this);
         }
 
     }
