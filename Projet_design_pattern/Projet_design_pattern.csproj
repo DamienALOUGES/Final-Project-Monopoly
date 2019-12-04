@@ -43,17 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Case.cs" />
-    <Compile Include="CaseAutre.cs" />
-    <Compile Include="CaseChance.cs" />
-    <Compile Include="CaseAchat.cs" />
-    <Compile Include="Cases.cs" />
-    <Compile Include="Dés.cs" />
-    <Compile Include="Joueur.cs" />
+    <Compile Include="Box.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="Cardstack.cs" />
+    <Compile Include="ObjetStructure.cs" />
+    <Compile Include="Dice.cs" />
+    <Compile Include="IElement.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IvisitorCase.cs" />
+    <Compile Include="IvisitorElement.cs" />
     <Compile Include="TourDeJeu.cs" />
   </ItemGroup>
   <ItemGroup>

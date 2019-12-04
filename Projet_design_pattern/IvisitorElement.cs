@@ -9,11 +9,10 @@ namespace Projet_design_pattern
     // The 'Visitor' interface of the visitor design pattern
     //This is an interface that specifies the Visit operations for concrete visitors (joueurs).
 
-    interface IvisitorCase //visitor=joueur
+    interface IvisitorElement //visitor=joueur
     {
-        void Visit(CaseChance chance);
-        void Visit(CaseAutre autre);
-        void Visit(CaseAchat achat);
+        void Visit(Box position);
+        void Visit(Card chance);
         
     }
 }

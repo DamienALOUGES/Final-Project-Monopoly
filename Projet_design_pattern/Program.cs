@@ -18,28 +18,38 @@ namespace Projet_design_pattern
             Console.WriteLine("|                                         |\n");
             Console.WriteLine(" -----------------------------------------\n\n");
 
-          List<Case> plat = Plateau.Instance.ShowPlateau(); //singleton plateau created
-            Dés D1 = new Dés(1);
-            Dés D2 = new Dés(2);
+            int turn = 0;
 
-            Console.WriteLine("How many players? ");
+            List<Box> monopBoard = Plateau.Instance.ShowPlateau(); //singleton plateau created
+            List<Card> cardsStack = Cardstack.Instance.returnStackCard(); //singleton plateau created
+
+            Dice D1 = new Dice(1);
+            Dice D2 = new Dice(2);
+
+            List<Player> listPlayers = new List<Player>();
+            Console.WriteLine("\nHow many players ? ");
             int numberPlayers=int.Parse( Console.ReadLine());
+            
 
             for (int i = 0; i < numberPlayers; i++)
             {
-                List<Joueur> listJoueurs = new List<Joueur>();
-                Console.WriteLine("Name of the player number " + i + " :  ");
-                string Name = Console.ReadLine();
-                Joueur player = new Joueur(Name, 400.0, true, 0 ,i);
-                listJoueurs.Add(player);
-
-                Case col= Plateau.Instance.Board[listJoueurs[i].Position];
                 
-                listJoueurs[i].Visit(plat[i]);
-
+                Console.WriteLine("\nName of the player number " + i + " :  ");
+                string Name = Console.ReadLine();
+                Player player = new Player(Name, 400.0, true, 0 ,i);
+                listPlayers.Add(player);
 
             }
 
+            while (turn<10)
+            {
+                TourDeJeu tour = new TourDeJeu(turn);
+
+                tour.ATurn(monopBoard, cardsStack, listPlayers, D1, D2, tour.Tour);
+                turn++;
+
+            }
+           
 
             Console.ReadKey();
         }

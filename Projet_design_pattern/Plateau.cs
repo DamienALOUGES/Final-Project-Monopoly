@@ -10,39 +10,38 @@ namespace Projet_design_pattern
 
     {
             private static Plateau instance = null;
-            private List<Case> board; //board = list of boxes/cases
+            private List<Box> board; //board = list of boxes/cases
             
-            public List<Case> Board
+            public List<Box> Board
             {
                 get { return board; }
                 set { board = value; }
-            } //getter settter
+            } //getter setter
 
             private Plateau()
 
             {
                 Console.WriteLine("This is the game board \n");
-                Console.WriteLine("RED = Chance box : Money Malus or Bonus \n");
-                Console.WriteLine("BLUE - ORANGE - GREEN - YELLOW = Street box that you can buy  \n");
+                Console.WriteLine("WHITE = Begin box  \n");
+                 Console.WriteLine("BLUE - ORANGE - GREEN - YELLOW = Street boxes that you can buy  \n");
                 Console.WriteLine("BLACK = Boxes related to Jail : Visit Jain / In Jail \n");
 
-                this.board = new List<Case>();
+                this.board = new List<Box>();
                 for (int i = 0; i < 40; i++)
 
                 {
                       if (i == 0)//start case
 
                       {
-                            Case chance = new CaseChance(i, "red", 200, true); //earn  200 if a player is on it
-                            board.Add(chance);
+                            Box begin = new Box(i, "white" , 0, false,null,false);     
+                            board.Add(begin);
                       }
 
                       if (i > 0 && i < 10) //first row
 
                       {
 
-                            Case achat = new CaseAchat(i, "blue", 450, false, null);
-
+                            Box achat = new Box(i, "blue", 400, false, null,false);
                             board.Add(achat);
 
                       }
@@ -51,7 +50,8 @@ namespace Projet_design_pattern
 
                       {
 
-                            Case jail = new CaseAutre(i, "black");
+                            Box jail = new Box(i, "black");
+                           
                             board.Add(jail);
 
 
@@ -61,51 +61,74 @@ namespace Projet_design_pattern
 
                       {
 
-                           Case achat = new CaseAchat(i, "green", 600, false, null);
+                           Box achat = new Box(i, "green", 600, false, null,false);
                            board.Add(achat);
 
                       }
 
-                      if (i == 20)//chance case malus
+                      if (i == 20)  // on this box the player pick a card
 
                       {
 
-                          CaseChance chance = new CaseChance(i, "red", 150, false); //loose 150  if a playrt is on it
-                          board.Add(chance);
+                          Box PickcardBox = new Box(i, "green", 600, true,null,false); // on this box the player pick a card
+                          board.Add(PickcardBox);
 
                       }
 
-                      if (i > 20 && i < 30)//third row
+                      if (i > 20 && i < 26) //third row
 
                       {
 
-                          CaseAchat achat = new CaseAchat(i, "yellow", 750, false, null);
+                          Box achat = new Box(i, "yellow", 750, false, null,false);
                           board.Add(achat);
+                      }
+
+                      if (i == 26) // on this box the player pick a card
+
+                      {
+
+                          Box achat = new Box(i, "yellow", 750, true, null, false);
+                          board.Add(achat);
+                      }
+
+                      if (i > 26 && i < 30) //third row
+
+                      {
+
+                           Box achat = new Box(i, "yellow", 750, false, null, false);
+                           board.Add(achat);
                       }
 
                       if (i == 30)//send to prison case
 
                       {
 
-                         CaseAutre visitJail = new CaseAutre(i, "black");
+                         Box visitJail = new Box(i, "black");
+                         
                          board.Add(visitJail);
                       }
 
-                      if (i > 30 && i <= 39)//fourth row
+                      if (i > 30 && i <= 37)//fourth row
 
                       {
 
-                         CaseAchat achat = new CaseAchat(i, "orange", 750, false, null);
+                         Box achat = new Box(i, "orange", 800, false, null,false);
                          board.Add(achat);
 
                       }
-                      
+                      if (i > 37 && i <= 39)//// on these box the player pick a card
+
+                      {
+
+                         Box achat = new Box(i, "orange", 800, true, null, false);
+                         board.Add(achat);
+
+                      }
+                }
 
             }
 
-            }
-
-                 // Lock synchronization object
+             // Lock synchronization object
              private static object syncLock = new object();
 
              public static Plateau Instance
@@ -136,11 +159,11 @@ namespace Projet_design_pattern
 
             }
 
-             public List<Case> ShowPlateau()
+             public List<Box> ShowPlateau()
              {
                   for (int i = 0; i < board.Count; i++)
                   {
-                      Console.Write(board[i].Couleur.ToUpper() + "  "); 
+                      Console.Write(board[i].Color.ToUpper() + "  "); 
                   }
 
                    return Board;

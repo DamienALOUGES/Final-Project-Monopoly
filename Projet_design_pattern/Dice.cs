@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_design_pattern
 {
-    class Dés
+    class Dice
     {
         private int id; //1 or 2 because there are 2 dice
 
@@ -16,7 +16,7 @@ namespace Projet_design_pattern
             set { id = value; }
         }
 
-        public Dés(int id)
+        public Dice(int id)
         {
             this.id = id;
         }

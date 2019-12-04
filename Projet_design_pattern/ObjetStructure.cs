@@ -9,23 +9,23 @@ namespace Projet_design_pattern
     // 'ObjectStructure' class of the visitor design pattern
     //This is a class that holds all the elements which can be used by visitors ("Joueur" class).
 
-    class Cases
+    class ObjetStructure
     {
-        private List<Case> _cases = new List<Case>();
+        private List<IElement> _elements = new List<IElement>();
 
-        public void Attach(Case position)
+        public void Attach(IElement  element)
         {
-            _cases.Add(position);
+            _elements.Add(element);
         }
 
-        public void Detach(Case position)
+        public void Detach(IElement element)
         {
-            _cases.Remove(position);
+            _elements.Remove(element);
         }
 
-        public void Accept(IvisitorCase visitor)
+        public void Accept(IvisitorElement visitor)
         {
-            foreach (Case e in _cases)
+            foreach (IElement e in _elements)
             {
                 e.Accept(visitor);
             }
