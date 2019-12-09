@@ -9,16 +9,16 @@ namespace Projet_design_pattern
     //'ConcreteVisitor' class of the visitor dp
     class Player : IvisitorElement
     {
-        private string prenom;
-        private double argent;
-        private bool statut; // true= free, false= in jail
+        private string name;
+        private double money;
+        private bool status; // true= free, false= in jail
         private int position; //position of the player on the game board
         private int id;
 
-        public string Prenom
+        public string Name
         {
-            get { return prenom; }
-            set { prenom = value; }
+            get { return name; }
+            set { name = value; }
         }
 
         public int Position
@@ -32,24 +32,24 @@ namespace Projet_design_pattern
             set { id = value; }
         }
 
-        public double Argent
+        public double Money
         {
-            get { return argent; }
-            set { argent = value; }
+            get { return money; }
+            set { money = value; }
         }
 
-        public bool Statut
+        public bool Status
         {
-            get { return statut; }
-            set { statut = value; }
+            get { return status; }
+            set { status = value; }
         }
 
 
         public Player(string prenom,double argent,bool statut,int position,int id)
         {
-            this.prenom = prenom;
-            this.argent = argent;
-            this.statut = statut;
+            this.name = prenom;
+            this.money = argent;
+            this.status = statut;
             this.position = position;
             this.id = id;
         }
@@ -59,38 +59,57 @@ namespace Projet_design_pattern
         public void Visit(Box courantBox)
         {
             Console.WriteLine("Box {0} visited by player {1}",
-            courantBox.Number, this.Prenom);
+            courantBox.Number, this.Name);
 
             //street boxes
-            if  (courantBox.Statut == false && courantBox.Number != 10 && courantBox.Number != 30) // free box
+            //jail Boxe
+            if (courantBox.Number == 0) { Console.WriteLine("You earn 400 Eur !");  courantBox.BeginBox(this); }
+
+            if (courantBox.Number == 10) { Console.WriteLine("You are visiting jail"); }
+
+            if (courantBox.Number == 30)
+            {
+                Console.WriteLine("You are in jail\n ");
+                this.status = false; //go to jail
+                this.position = 10; //in jail
+            }
+
+            if (courantBox.Statut == true && courantBox.Number != 10 && courantBox.Number != 30) // box already bought by another player
+            {
+                this.money = this.Money-courantBox.calculTaxe();
+                
+                courantBox.Owner.Money = courantBox.Owner.Money+courantBox.calculTaxe();
+
+                Console.WriteLine("The owner of this street  is " + courantBox.Owner.Name +
+                    "You have to pay taxes (" + courantBox.calculTaxe() + " Eur). Now you have " + this.money + " Eur\n." +
+                    courantBox.Owner.Name + " has now " + courantBox.Owner.Money + " Eurn  \n");
+                if (this.money < 0)
+                {
+                    Console.WriteLine("You have a negativ bank balance be careful you cannot buy anything! ");
+                }
+
+            }
+
+            if (courantBox.Statut == false && courantBox.Number != 10 && courantBox.Number != 30 && courantBox.Number != 0) // free box
             {
                 Console.WriteLine("Do you want to buy this street ? - 0 if YES // 1 if NO\n");
                 int reponse =int.Parse( Console.ReadLine());
 
                 if (reponse == 0)
                 {
-                    courantBox.Owner = this ;
-                    courantBox.Statut= true;
-                    this.Argent  =-courantBox.Price;
+                    if (this.Money >= courantBox.Price )
+                    {
+                        courantBox.Owner = this;
+                        courantBox.Statut = true;
+                        this.Money = this.Money - courantBox.Price;
+                        Console.WriteLine("You are the new owner of this street " + courantBox.Owner.Name + " with " + courantBox.Owner.Money + " Eur.\n");
+                    }
+                    else { Console.WriteLine("You don't have enough money to buy this street."); }
                 }
             }
 
-            if (courantBox.Statut == true && courantBox.Number != 10 && courantBox.Number != 30) // box already bought by another player
-            {
-                this.argent =-courantBox.calculTaxe();
-                courantBox.Owner.Argent =+ courantBox.calculTaxe();
 
-            }
-
-            //jail Boxe
-   
            
-             if (courantBox.Number == 30)
-            {
-                this.statut = false; //go to jail
-                this.position = 10; //in jail
-            }
-
         }
 
         //visitor dp 
@@ -98,19 +117,19 @@ namespace Projet_design_pattern
         {
 
                 Console.WriteLine("Chance card of the amout of {0} Eur is picked by player {1}",
-                chance.Amount, this.Prenom);
+                chance.Amount, this.Name);
 
                 if (chance.MalusBonus == true)
                 {
                      Console.WriteLine("This is a bonus card ! :) \n");
-                     this.argent = argent + chance.Amount; // money bonus 
-                     Console.WriteLine("You now have "+this.argent+" Eur left");
+                     this.money = money + chance.Amount; // money bonus 
+                     Console.WriteLine("You now have "+this.money+" Eur left");
                 }
                 else
                 {
                      Console.WriteLine("This is a malus card ! :( \n");
-                     this.argent = argent - chance.Amount; //money malus 
-                     Console.WriteLine("You now have " + this.argent + " Eur left");
+                     this.money = money - chance.Amount; //money malus 
+                     Console.WriteLine("You now have " + this.money + " Eur left");
                 }
         }
 

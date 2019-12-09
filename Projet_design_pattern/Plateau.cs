@@ -23,7 +23,7 @@ namespace Projet_design_pattern
             {
                 Console.WriteLine("This is the game board \n");
                 Console.WriteLine("WHITE = Begin box  \n");
-                 Console.WriteLine("BLUE - ORANGE - GREEN - YELLOW = Street boxes that you can buy  \n");
+                 Console.WriteLine("BLUE(200 Eur) - ORANGE(500 Eur) - GREEN(300 Eur) - YELLOW(450 Eur) = Street boxes that you can buy  \n");
                 Console.WriteLine("BLACK = Boxes related to Jail : Visit Jain / In Jail \n");
 
                 this.board = new List<Box>();
@@ -41,7 +41,7 @@ namespace Projet_design_pattern
 
                       {
 
-                            Box achat = new Box(i, "blue", 400, false, null,false);
+                            Box achat = new Box(i, "blue", 200, false, null,false);
                             board.Add(achat);
 
                       }
@@ -61,7 +61,7 @@ namespace Projet_design_pattern
 
                       {
 
-                           Box achat = new Box(i, "green", 600, false, null,false);
+                           Box achat = new Box(i, "green", 300, false, null,false);
                            board.Add(achat);
 
                       }
@@ -70,7 +70,7 @@ namespace Projet_design_pattern
 
                       {
 
-                          Box PickcardBox = new Box(i, "green", 600, true,null,false); // on this box the player pick a card
+                          Box PickcardBox = new Box(i, "green", 300, true,null,false); // on this box the player pick a card
                           board.Add(PickcardBox);
 
                       }
@@ -79,7 +79,7 @@ namespace Projet_design_pattern
 
                       {
 
-                          Box achat = new Box(i, "yellow", 750, false, null,false);
+                          Box achat = new Box(i, "yellow", 450, false, null,false);
                           board.Add(achat);
                       }
 
@@ -87,7 +87,7 @@ namespace Projet_design_pattern
 
                       {
 
-                          Box achat = new Box(i, "yellow", 750, true, null, false);
+                          Box achat = new Box(i, "yellow", 450, true, null, false);
                           board.Add(achat);
                       }
 
@@ -95,7 +95,7 @@ namespace Projet_design_pattern
 
                       {
 
-                           Box achat = new Box(i, "yellow", 750, false, null, false);
+                           Box achat = new Box(i, "yellow", 450, false, null, false);
                            board.Add(achat);
                       }
 
@@ -112,7 +112,7 @@ namespace Projet_design_pattern
 
                       {
 
-                         Box achat = new Box(i, "orange", 800, false, null,false);
+                         Box achat = new Box(i, "orange", 500, false, null,false);
                          board.Add(achat);
 
                       }
@@ -120,7 +120,7 @@ namespace Projet_design_pattern
 
                       {
 
-                         Box achat = new Box(i, "orange", 800, true, null, false);
+                         Box achat = new Box(i, "orange", 500, true, null, false);
                          board.Add(achat);
 
                       }
@@ -161,9 +161,24 @@ namespace Projet_design_pattern
 
              public List<Box> ShowPlateau()
              {
-                  for (int i = 0; i < board.Count; i++)
+                  int i = 0;
+                  int a = 28;
+
+                  for ( i = 0; i <= 10; i++)
                   {
-                      Console.Write(board[i].Color.ToUpper() + "  "); 
+                      Console.Write(board[i].Number + ":" + board[i].Color.ToUpper() + "  "); 
+                  }
+                   Console.WriteLine();
+                  for (i = 11; i <= 20; i++)
+                  {
+                     Console.Write(board[i + a].Number+":" + board[i+a].Color.ToUpper());
+                     Console.Write("........................................................................");
+                     Console.Write(board[i].Number + ":" +board[i].Color.ToUpper() + "  \n");
+                     a = a - 2;
+                  }
+                  for (i = 29; i >= 21; i--)
+                  {
+                      Console.Write(board[i].Number + ":" + board[i ].Color.ToUpper() + " ");
                   }
 
                    return Board;

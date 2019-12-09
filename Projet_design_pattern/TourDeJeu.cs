@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace Projet_design_pattern
 {
@@ -21,41 +23,215 @@ namespace Projet_design_pattern
             this.tour = tour;
         }
 
-        public void ATurn(List<Box> monopBoard, List<Card> stack,List<Player> Players,Dice D1,Dice D2,int tour)
+        public void ATurn(List<Box> monopBoard, List<Card> stack, List<Player> Players, Dice D1, Dice D2, int tour)
+
         {
-            ObjetStructure o = new ObjetStructure();
+
+
             for (int i = 0; i < Players.Count; i++)
+
             {
-                Console.Write("Your turn to play " +Players[i].Prenom+ ", roll the dice\n");
-                Console.Write("Dice are rolled : \n");
-                Console.Write("Dice "+D1.Id+ " = " +D1.ValeurDés()+"\n");
-                Console.Write("Dice " + D2.Id + " = " + D2.ValeurDés() + "\n");
-                int ValDice = D1.ValeurDés() + D2.ValeurDés();
-                Console.WriteLine(" " + ValDice + "\n");
-
-                Console.WriteLine("Go to box number " + (Players[i].Position + ValDice) % 39);
-                Players[i].Position = (Players[i].Position + ValDice) % 39;
-                Box courantBox = monopBoard[Players[i].Position];
-
-                o.Attach(courantBox);
-                //Players[i].Visit(courantBox);
-
-                if (courantBox.PickAcard == true)
-                {
-                    Random aleatoire = new Random();
-                   
-                    int CardPicked = aleatoire.Next(30); //Génère un entier compris entre 0 et 9
-                   // Players[i].Visit((stack[CardPicked]));
-                    o.Attach(stack[CardPicked]);
-                }
-
-                o.Accept(Players[i]);
+                int turnJail = 0;
+                PLayerTurn(monopBoard, stack, Players[i], D1, D2, tour,turnJail);
 
             }
-          
-            
+
         }
 
 
+
+        public void GetFree(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour, ObjetStructure o,int turnJail)
+
+        {
+
+            int valD1 = D1.Val(); //dices instantiation
+            Thread.Sleep(2520);
+            int valD2 = D2.Val();
+
+
+            Console.Write("Dice 1 = " + valD1 + "\n");
+
+            Console.Write("Dice 2 = " + valD2 + "\n");
+
+            int ValDice = valD1 + valD2;
+
+            Console.WriteLine("total = " + ValDice + "\n");
+
+
+
+            if (valD1 == valD2)
+
+            {
+
+                Console.WriteLine("You are now free to go");
+
+                player.Status = true;
+
+
+
+                Console.WriteLine("Go to box number " + (player.Position + ValDice) % 39);
+
+                player.Position = (player.Position + ValDice) % 39;
+
+                Box courantBox = monopBoard[player.Position];
+
+
+                o.Attach(courantBox);
+
+                //Players[i].Visit(courantBox);
+
+
+
+                if (courantBox.PickAcard == true)
+
+                {
+
+                    Random aleatoire = new Random();
+
+                    int CardPicked = aleatoire.Next(30); //Génère un entier compris entre 0 et 9
+
+                    // Players[i].Visit((stack[CardPicked]));
+
+                    o.Attach(stack[CardPicked]);
+
+                }
+
+                o.Accept(player);
+
+            }
+
+            else
+
+            {
+                turnJail++;
+                Console.WriteLine("You've been " + turnJail + " turn in jail, it is not enough ");
+                if (turnJail == 3)
+                {
+                    Console.WriteLine("You've done your time in Jail you're now free to go.\n");
+                    player.Status = true;
+                    turnJail = 0;
+                    Console.WriteLine("Go to box number " + (player.Position + ValDice) % 39);
+
+                    player.Position = (player.Position + ValDice) % 39;
+
+                    Box courantBox = monopBoard[player.Position];
+
+
+                    o.Attach(courantBox);
+
+                    //Players[i].Visit(courantBox);
+
+                    if (courantBox.PickAcard == true)
+
+                    {
+
+                        Random aleatoire = new Random();
+
+                        int CardPicked = aleatoire.Next(30); //Génère un entier compris entre 0 et 29
+
+                        // Players[i].Visit((stack[CardPicked]));
+
+                        o.Attach(stack[CardPicked]);
+
+                    }
+
+                    o.Accept(player);
+                }
+                else
+                {
+                    Console.WriteLine("You stay in jail");
+                }
+               
+
+
+            }
+
+        }
+
+
+
+        public void PLayerTurn(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour,int turnJail )
+
+        {
+            ObjetStructure o = new ObjetStructure();
+            Console.Write("Your turn to play " + player.Name + " you have "+player.Money+", roll the dice\n");
+
+            Console.Write("Dice are rolled : \n");
+
+
+            if (player.Status == false)
+            {
+
+                GetFree(monopBoard, stack, player, D1, D2, tour, o, turnJail);
+
+            }
+
+
+            else
+            {
+
+                int valD1 = D1.Val(); //dices instantiation
+                Thread.Sleep(200);
+                int valD2 = D2.Val();
+
+                Console.Write("Dice 1 = " + valD1 + "\n");
+
+                Console.Write("Dice 2 = " + valD2 + "\n");
+               // int ValDice = 30;  // test jail
+                int ValDice = valD2 + valD1;
+
+                Console.WriteLine("total = " + ValDice + "\n");
+
+
+
+                Console.WriteLine("Go to box number " + (player.Position + ValDice) % 39);
+
+                player.Position = (player.Position + ValDice) % 39;
+
+                Box courantBox = monopBoard[player.Position];
+
+                o.Attach(courantBox);
+
+                //Players[i].Visit(courantBox);
+
+
+
+                if (courantBox.PickAcard == true)
+
+                {
+
+                    Random aleatoire = new Random();
+
+
+
+                    int CardPicked = aleatoire.Next(30); //Génère un entier compris entre 0 et 29 car 30 cartes
+
+                    // Players[i].Visit((stack[CardPicked]));
+
+                    o.Attach(stack[CardPicked]); //card visited by palyer
+
+                }
+
+                o.Accept(player);
+
+                if (valD2 == valD1 && player.Status == true)
+
+                {
+                    Console.WriteLine("\nYou can play again! ");
+                    PLayerTurn(monopBoard, stack, player, D1, D2, tour, turnJail);
+
+                }
+
+            }
+
+           
+
+        }
+
+
+
+
+
     }
+
 }

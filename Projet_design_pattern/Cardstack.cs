@@ -27,7 +27,7 @@ namespace Projet_design_pattern
         private Cardstack()
 
         {
-            Console.WriteLine("This is the satck of Cards \n");
+            Console.WriteLine("\nThe satck of Cards is instancied \n");
            
 
             this.cards = new List<Card>();

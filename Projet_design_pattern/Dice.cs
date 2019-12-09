@@ -21,7 +21,7 @@ namespace Projet_design_pattern
             this.id = id;
         }
 
-        public int ValeurDés()
+        public int Val()
         {
             Random aleatoire = new Random();
             int value = aleatoire.Next(1, 7);  //random int value between 1 and 6

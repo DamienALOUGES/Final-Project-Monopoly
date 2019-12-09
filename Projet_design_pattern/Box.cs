@@ -85,7 +85,7 @@ namespace Projet_design_pattern
         {
             if (this.number == 0)
             {
-                player.Argent = +200;
+                player.Money = +400;
             }
         }
         //pattern visitor
