@@ -21,12 +21,14 @@ namespace Projet_design_pattern
             private Plateau()
 
             {
-                Console.WriteLine("This is the game board \n");
-                Console.WriteLine("WHITE = Begin box  \n");
-                 Console.WriteLine("BLUE(200 Eur) - ORANGE(500 Eur) - GREEN(300 Eur) - YELLOW(450 Eur) = Street boxes that you can buy  \n");
-                Console.WriteLine("BLACK = Boxes related to Jail : Visit Jain / In Jail \n");
+                Console.WriteLine("RULES : ");
+                Console.WriteLine("WHITE = Begin box  ");
+                Console.WriteLine("BLUE(200 Eur) - GREEN(300 Eur) - YELLOW(400 Eur) - ORANGE(450 Eur) - = Street boxes that you can buy ");
+                Console.WriteLine("BLACK = Boxes related to Jail : Visit Jail / In Jail \n");
+                Console.WriteLine(".......................................................................................................");
+                Console.WriteLine("This is the game board\n");
 
-                this.board = new List<Box>();
+            this.board = new List<Box>();
                 for (int i = 0; i < 40; i++)
 
                 {
@@ -79,7 +81,7 @@ namespace Projet_design_pattern
 
                       {
 
-                          Box achat = new Box(i, "yellow", 450, false, null,false);
+                          Box achat = new Box(i, "yellow", 400, false, null,false);
                           board.Add(achat);
                       }
 
@@ -87,7 +89,7 @@ namespace Projet_design_pattern
 
                       {
 
-                          Box achat = new Box(i, "yellow", 450, true, null, false);
+                          Box achat = new Box(i, "yellow", 400, true, null, false);
                           board.Add(achat);
                       }
 
@@ -95,7 +97,7 @@ namespace Projet_design_pattern
 
                       {
 
-                           Box achat = new Box(i, "yellow", 450, false, null, false);
+                           Box achat = new Box(i, "yellow", 400, false, null, false);
                            board.Add(achat);
                       }
 
@@ -112,7 +114,7 @@ namespace Projet_design_pattern
 
                       {
 
-                         Box achat = new Box(i, "orange", 500, false, null,false);
+                         Box achat = new Box(i, "orange", 450, false, null,false);
                          board.Add(achat);
 
                       }
@@ -120,7 +122,7 @@ namespace Projet_design_pattern
 
                       {
 
-                         Box achat = new Box(i, "orange", 500, true, null, false);
+                         Box achat = new Box(i, "orange", 450, true, null, false);
                          board.Add(achat);
 
                       }

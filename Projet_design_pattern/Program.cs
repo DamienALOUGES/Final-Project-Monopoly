@@ -15,13 +15,13 @@ namespace Projet_design_pattern
            
             Console.WriteLine("                                     MONOPOLY                  \n");
             List<Box> monopBoard = Plateau.Instance.ShowPlateau(); //singleton plateau created
-           
-            List<Card> cardsStack = Cardstack.Instance.returnStackCard(); //singleton plateau created
+            List<Card> cardsStack = Cardstack.Instance.showStackCard(); //singleton plateau created
 
             Dice D1 = new Dice(1);
             Dice D2 = new Dice(2);
 
             List<Player> listPlayers = new List<Player>();
+            Console.WriteLine("\n.......................................................................................................");
             Console.WriteLine("\nHow many players ? ");
             int numberPlayers=int.Parse( Console.ReadLine());
             
@@ -31,43 +31,30 @@ namespace Projet_design_pattern
                 
                 Console.WriteLine("\nName of the player number " + i + " :  ");
                 string Name = Console.ReadLine();
-                Player player = new Player(Name, 400.0, true, 0 ,i);
+                Player player = new Player(Name, 400.0, true, 0 ,i,0);
                 listPlayers.Add(player);
 
             }
 
-            while (turn<10)
+            while (listPlayers.Count > 1)
             {
                 TourDeJeu tour = new TourDeJeu(turn);
-                Plateau.Instance.ShowPlateau();
                 Console.WriteLine("\n\nTURN n°" + turn);
-                tour.ATurn(monopBoard, cardsStack, listPlayers, D1, D2, tour.Tour);
+                listPlayers = tour.ATurn(monopBoard, cardsStack, listPlayers, D1, D2, tour.Tour);
                 turn++;
 
             }
 
-            double WinnerMoney=-1000;
-            Player win=null;
+        
 
             for (int i = 0; i < listPlayers.Count; i++)
             {
 
-                Console.WriteLine("\nPlayer " + listPlayers[i].Name+ " has " +listPlayers[i].Money);
-                if (listPlayers[i].Money > WinnerMoney)
-                {
-                    WinnerMoney = listPlayers[i].Money;
-                    win = listPlayers[i];
-                }
-               
-               
-                Console.WriteLine();
+                Console.WriteLine("...........................................");
+                Console.WriteLine(" YOU ARE THE WINNER : " + listPlayers[i].Name + " BRAVO ! ");
+                Console.WriteLine("...........................................");
 
-            }Console.WriteLine();
-
-
-            Console.WriteLine("The winner is " + win.Name);
-
-
+            }
 
 
             Console.ReadKey();

@@ -23,24 +23,41 @@ namespace Projet_design_pattern
             this.tour = tour;
         }
 
-        public void ATurn(List<Box> monopBoard, List<Card> stack, List<Player> Players, Dice D1, Dice D2, int tour)
+        public List<Player>  ATurn(List<Box> monopBoard, List<Card> stack, List<Player> Players, Dice D1, Dice D2, int tour)
 
         {
-
+            List<int> PlayersEliminated = new List<int>();
 
             for (int i = 0; i < Players.Count; i++)
 
             {
                 int turnJail = 0;
-                PLayerTurn(monopBoard, stack, Players[i], D1, D2, tour,turnJail);
+                PLayerTurn(monopBoard, stack, Players[i], D1, D2, tour);
+                if (Players[i].Money <= 0)
+
+                {
+                    Console.WriteLine("\nYou don'have any money yet, GAME OVER , you're eliminated !\n");
+                    PlayersEliminated.Add(i);
+                    // the player is out of the game he is added to the list of the pleyers who are eliminated
+                }
 
             }
 
+            for (int i = 0; i < PlayersEliminated.Count; i++)
+
+            {
+                Players.RemoveAt(PlayersEliminated[i]);  //remove all the players who have been eliminated at this Turn 
+
+            }
+
+            return Players;  //return the list of the players remained
+
         }
 
+   
 
 
-        public void GetFree(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour, ObjetStructure o,int turnJail)
+        public void GetFree(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour, ObjetStructure o)
 
         {
 
@@ -103,13 +120,13 @@ namespace Projet_design_pattern
             else
 
             {
-                turnJail++;
-                Console.WriteLine("You've been " + turnJail + " turn in jail, it is not enough ");
-                if (turnJail == 3)
+                player.TurnInJail++;
+
+                if (player.TurnInJail == 3)
                 {
                     Console.WriteLine("You've done your time in Jail you're now free to go.\n");
                     player.Status = true;
-                    turnJail = 0;
+                    player.TurnInJail = 0;
                     Console.WriteLine("Go to box number " + (player.Position + ValDice) % 39);
 
                     player.Position = (player.Position + ValDice) % 39;
@@ -139,21 +156,24 @@ namespace Projet_design_pattern
                 }
                 else
                 {
+                    Console.WriteLine("You've been " + player.TurnInJail + " turn in jail, it is not enough ");
                     Console.WriteLine("You stay in jail");
                 }
                
 
 
             }
+            
 
         }
 
 
 
-        public void PLayerTurn(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour,int turnJail )
+        public void PLayerTurn( List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour)
 
         {
             ObjetStructure o = new ObjetStructure();
+
             Console.Write("Your turn to play " + player.Name + " you have "+player.Money+", roll the dice\n");
 
             Console.Write("Dice are rolled : \n");
@@ -162,7 +182,7 @@ namespace Projet_design_pattern
             if (player.Status == false)
             {
 
-                GetFree(monopBoard, stack, player, D1, D2, tour, o, turnJail);
+               GetFree(monopBoard, stack, player, D1, D2, tour, o);
 
             }
 
@@ -171,7 +191,7 @@ namespace Projet_design_pattern
             {
 
                 int valD1 = D1.Val(); //dices instantiation
-                Thread.Sleep(200);
+                Thread.Sleep(236);
                 int valD2 = D2.Val();
 
                 Console.Write("Dice 1 = " + valD1 + "\n");
@@ -218,7 +238,7 @@ namespace Projet_design_pattern
 
                 {
                     Console.WriteLine("\nYou can play again! ");
-                    PLayerTurn(monopBoard, stack, player, D1, D2, tour, turnJail);
+                    PLayerTurn(monopBoard, stack, player, D1, D2, tour);
 
                 }
 

@@ -14,6 +14,7 @@ namespace Projet_design_pattern
         private bool status; // true= free, false= in jail
         private int position; //position of the player on the game board
         private int id;
+        private int turnInJail;
 
         public string Name
         {
@@ -26,6 +27,7 @@ namespace Projet_design_pattern
             get { return position; }
             set { position = value; }
         }
+
         public int Id
         {
             get { return id; }
@@ -44,14 +46,22 @@ namespace Projet_design_pattern
             set { status = value; }
         }
 
+        public int TurnInJail
+        {
+            get { return turnInJail; }
+            set { turnInJail = value; }
+        }
 
-        public Player(string prenom,double argent,bool statut,int position,int id)
+
+        public Player(string prenom,double argent,bool statut,int position,int id,int turnInJail)
         {
             this.name = prenom;
             this.money = argent;
             this.status = statut;
             this.position = position;
             this.id = id;
+            this.turnInJail = turnInJail;
+
         }
 
        
@@ -63,7 +73,7 @@ namespace Projet_design_pattern
 
             //street boxes
             //jail Boxe
-            if (courantBox.Number == 0) { Console.WriteLine("You earn 400 Eur !");  courantBox.BeginBox(this); }
+            if (courantBox.Number == 0) { Console.WriteLine("You earn 400 Eur, you are on the Begin Box !");  courantBox.BeginBox(this); }
 
             if (courantBox.Number == 10) { Console.WriteLine("You are visiting jail"); }
 
