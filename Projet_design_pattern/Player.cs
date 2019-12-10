@@ -73,7 +73,11 @@ namespace Projet_design_pattern
 
             //street boxes
             //jail Boxe
-            if (courantBox.Number == 0) { Console.WriteLine("You earn 400 Eur, you are on the Begin Box !");  courantBox.BeginBox(this); }
+            if (courantBox.Number == 0)
+            {
+                Console.WriteLine("You earn 400 Eur, you are on the Begin Box !");
+                this.Money = +400;
+            }
 
             if (courantBox.Number == 10) { Console.WriteLine("You are visiting jail"); }
 

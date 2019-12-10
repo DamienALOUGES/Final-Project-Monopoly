@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_design_pattern
 {
-    //This is classe which implement the Element interface ('IElement') and holds the real information.
+    //This is classe which implement the Element interface ('IElement') 
     //'ConcreteElement1' class of the visitor design pattern
 
     class Box : IElement
@@ -80,14 +80,6 @@ namespace Projet_design_pattern
         }
 
    
-
-        public void BeginBox(Player player) //if a player is on the Begin box (0) then he earn 200 eu
-        {
-            if (this.number == 0)
-            {
-                player.Money = +400;
-            }
-        }
         //pattern visitor
 
         public void Accept(IvisitorElement visitorElement)

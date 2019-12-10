@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projet_design_pattern
 {
     // The 'Visitor' interface of the visitor design pattern
-    //This is an interface that specifies the Visit operations for concrete visitors (joueurs).
+    //This is an interface that specifies the Visit operations for concrete visitors (palyers).
 
     interface IvisitorElement //visitor=joueur
     {

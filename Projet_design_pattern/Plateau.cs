@@ -85,7 +85,7 @@ namespace Projet_design_pattern
                           board.Add(achat);
                       }
 
-                      if (i == 26) // on this box the player pick a card
+                      if (i == 26 || i== 27) // on this boxes the player pick a card
 
                       {
 
@@ -93,7 +93,7 @@ namespace Projet_design_pattern
                           board.Add(achat);
                       }
 
-                      if (i > 26 && i < 30) //third row
+                      if (i > 27 && i < 30) //third row
 
                       {
 

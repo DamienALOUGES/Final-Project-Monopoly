@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projet_design_pattern
 {
     // 'ObjectStructure' class of the visitor design pattern
-    //This is a class that holds all the elements which can be used by visitors ("Joueur" class).
+    //This is a class that holds all the elements which can be used by visitors ("Player" class).
 
     class ObjetStructure
     {

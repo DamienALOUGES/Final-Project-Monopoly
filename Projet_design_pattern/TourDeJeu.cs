@@ -23,7 +23,8 @@ namespace Projet_design_pattern
             this.tour = tour;
         }
 
-        public List<Player>  ATurn(List<Box> monopBoard, List<Card> stack, List<Player> Players, Dice D1, Dice D2, int tour)
+        //manage a turn
+        public List<Player> ATurn(List<Box> monopBoard, List<Card> stack, List<Player> Players, Dice D1, Dice D2, int tour)
 
         {
             List<int> PlayersEliminated = new List<int>();
@@ -31,12 +32,12 @@ namespace Projet_design_pattern
             for (int i = 0; i < Players.Count; i++)
 
             {
-                int turnJail = 0;
+     
                 PLayerTurn(monopBoard, stack, Players[i], D1, D2, tour);
                 if (Players[i].Money <= 0)
 
                 {
-                    Console.WriteLine("\nYou don'have any money yet, GAME OVER , you're eliminated !\n");
+                    Console.WriteLine("You don'have any money yet, GAME OVER , you're eliminated !\n");
                     PlayersEliminated.Add(i);
                     // the player is out of the game he is added to the list of the pleyers who are eliminated
                 }
@@ -54,9 +55,7 @@ namespace Projet_design_pattern
 
         }
 
-   
-
-
+        //manage how to get free of jail
         public void GetFree(List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour, ObjetStructure o)
 
         {
@@ -167,8 +166,7 @@ namespace Projet_design_pattern
 
         }
 
-
-
+        //the logic of a turn
         public void PLayerTurn( List<Box> monopBoard, List<Card> stack, Player player, Dice D1, Dice D2, int tour)
 
         {

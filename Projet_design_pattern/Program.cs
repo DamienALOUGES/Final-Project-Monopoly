@@ -36,7 +36,7 @@ namespace Projet_design_pattern
 
             }
 
-            while (listPlayers.Count > 1)
+            while (listPlayers.Count > 1) // id only one player remain the game is over
             {
                 TourDeJeu tour = new TourDeJeu(turn);
                 Console.WriteLine("\n\nTURN n°" + turn);
@@ -44,8 +44,8 @@ namespace Projet_design_pattern
                 turn++;
 
             }
-
-        
+      
+            // the winner is the last one
 
             for (int i = 0; i < listPlayers.Count; i++)
             {
@@ -55,8 +55,6 @@ namespace Projet_design_pattern
                 Console.WriteLine("...........................................");
 
             }
-
-
             Console.ReadKey();
         }
 
