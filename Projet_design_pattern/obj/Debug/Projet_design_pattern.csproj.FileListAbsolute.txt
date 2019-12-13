@@ -1,7 +1,0 @@
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\bin\Debug\Projet_design_pattern.exe.config
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\bin\Debug\Projet_design_pattern.exe
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\bin\Debug\Projet_design_pattern.pdb
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\obj\Debug\Projet_design_pattern.csprojAssemblyReference.cache
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\obj\Debug\Projet_design_pattern.csproj.CoreCompileInputs.cache
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\obj\Debug\Projet_design_pattern.exe
-C:\Users\louis\Source\Repos\Final-Project-Monopoly\Projet_design_pattern\obj\Debug\Projet_design_pattern.pdb
