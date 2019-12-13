@@ -60,4 +60,5 @@ In the code :
 
 •	Card – Box  : these classes implement the 'IElement' interface and defines the accept operation. The player (visitor object) is passed to this object using the accept operation.
 
-
+####Alouges Damien
+####Aproh Louise
